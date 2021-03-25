@@ -14,11 +14,7 @@ class NewPostRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() === 'post') {
-            return true;
-       }
-
-        return false;
+        return true;
     }
 
     /**
@@ -32,14 +28,19 @@ class NewPostRequest extends FormRequest
             /* ※条件
             - コンテンツの文字数が140文字
             */  
-            'content'  => 'max:140'
+            'user_id' => 'required',
+            'title' => 'required',
+            'content' => 'required|max:140'
         ];
     }
 
     
     public function messages() {
         return [
-            'content.max'  => '140字以下で入力してください'
+            
+            'title.required'  => 'タイトルを入力してください',
+            'content.required'  => 'コンテンツを入力してください',
+            'content.max'  => '140字以下で入力してください',
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\NewPostRequest;
 use App\Post;
 
 class PostController extends Controller
@@ -34,16 +33,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(newPostRequest $request)
+    public function store(Request $request)
     {
-        //DBに投稿を新規追加
-        $post = new Post;
-        $postData = $request->all();
-        unset($postData['_token']);
-        $post->fill($postData)->save();
-
-        //return redirect('newPost', compact('content'));
-        return view('newPost', compact('content'));
+        
     }
 
     /**

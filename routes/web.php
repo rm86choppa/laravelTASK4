@@ -22,4 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Postコントローラへのルート
 Route::resource('post', 'PostController', ['only' => ['index', 'store', 'destroy', 'update']]);
 
-Route::get('/newPost', 'NewPostController@newPost')->name('newPost');
+Route::resource('newPost', 'NewPostController', ['only' => ['index', 'store']]);
