@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Postコントローラへのルート
-Route::resource('post', 'PostController', ['only' => ['index', 'store', 'destroy', 'update']]);
+Route::resource('post', 'PostController', ['only' => ['index', 'store', 'destroy', 'update', 'show']]);
 
 Route::resource('newPost', 'NewPostController', ['only' => ['index', 'store']]);
+
+?>

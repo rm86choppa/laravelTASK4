@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Post;
+use App\Http\Requests\EditPostRequest;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('index');
+        //全ユーザ情報取得
+        $users = User::all();
+
+        return view('post', compact('users'));
     }
 
     /**
@@ -44,9 +54,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $post = $request->all();
+        unset($post['_token']);
+        $post['id'] = $id;
+
+        return view('editPost', compact('post'));
     }
 
     /**
@@ -67,9 +81,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditPostRequest $request, $id)
     {
-        //
+        $post = Post::find($id)->update(['title' => $request->title, 'content' => $request->content]);
+        
+        return redirect('post');
     }
 
     /**
@@ -80,6 +96,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::find($id)->delete();
+
+        //全ユーザ情報取得
+        $users = User::all();
+
+        return view('post', compact('users'));
     }
 }
