@@ -58,7 +58,7 @@
                                 <a class="nav-link" href="{{ url('post') }}">みんなの投稿</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('newPost') }}">投稿を作成</a>
+                                <a class="nav-link" href="{{ url('post/create') }}">投稿を作成</a>
                             </li>
                             <!-- リンク追加(みんなの投稿、投稿を作成) -->
 

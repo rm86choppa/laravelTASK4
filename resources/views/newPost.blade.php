@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ url('newPost') }}">
+                    <form method="post" action="{{ url('post') }}">
                         @csrf
 
                         <div class="form-group row">

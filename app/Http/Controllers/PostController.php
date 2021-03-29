@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('newPost');
     }
 
     /**
@@ -45,7 +45,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //DBに投稿を新規追加
+        $post = new Post;
+        $postData = $request->all();
+        unset($postData['_token']);
+        $post->fill($postData)->save();
+
+        return redirect('post');
     }
 
     /**
