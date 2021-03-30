@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Http\Requests\EditPostRequest;
+use App\Http\Requests\NewPostRequest;
 
 class PostController extends Controller
 {
+    //ログインしているかチェックし、してない場合ログイン画面に遷移させる
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,10 +23,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //全ユーザ情報取得
-        $users = User::all();
+        //全投稿情報取得(投稿に紐づくユーザ情報も取得)
+        $posts = Post::with('user')->get();
 
-        return view('post', compact('users'));
+        return view('post', compact('posts'));
     }
 
     /**
@@ -40,10 +42,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\NewPostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewPostRequest $request)
     {
         //DBに投稿を新規追加
         $post = new Post;
@@ -55,12 +57,13 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         $post = $request->all();
         unset($post['_token']);
@@ -70,20 +73,9 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\EditPostRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -104,9 +96,6 @@ class PostController extends Controller
     {
         Post::find($id)->delete();
 
-        //全ユーザ情報取得
-        $users = User::all();
-
-        return view('post', compact('users'));
+        return redirect('post');
     }
 }
