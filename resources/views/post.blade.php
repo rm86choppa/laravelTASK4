@@ -23,12 +23,6 @@
                                     @if( (Auth::user()->name) === ($post->user->name))
                                         <form method="GET" action="{{ url('post/'.$post->id.'/edit') }}">
                                             @csrf
-            
-                                            <!-- フォーム送信情報(編集する投稿内容) -->
-                                            <input type="hidden" name="title" value="{{ $post->title }}">
-                                            <input type="hidden" name="content" value="{{ $post->content }}">
-                                            <input type="hidden" name="content" value="{{ $post->content }}">
-                                            <!-- フォーム送信情報(編集する投稿内容) -->
 
                                             <button type="submit" class="btn btn-primary mr-2">
                                                 {{ __('編集') }}

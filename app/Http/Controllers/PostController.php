@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('newPost');
+        return redirect('newPost');
     }
 
     /**
@@ -63,11 +63,13 @@ class PostController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $post = $request->all();
+        /*$post = $request->all();
         unset($post['_token']);
-        $post['id'] = $id;
+        $post['id'] = $id;*/
+
+        $post = Post::find($id);
 
         return view('editPost', compact('post'));
     }
