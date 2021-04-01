@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //postsとの紐づけ(リレーション)
+    //主テーブル名の単数_id(user_id)にしてる場合は特に必要ないが、それ以外の場合外部キー、ローカルキーを指定が必要
+    public function posts() {
+        return $this->hasMany('App\Post');
+    }
 }

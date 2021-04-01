@@ -1,0 +1,31 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9001,
+            "pathMappings": {
+                "/var/www/laravel_app": "${workspaceRoot}"
+            },
+            "ignore": [
+                "/var/www/laravel_app/vendor/laravel/framework/src/Illuminate/Encryption/*.php",
+                "/var/www/laravel_app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/*.php",
+                "/var/www/laravel_app/vendor/laravel/framework/src/Illuminate/Filesystem/*.php"
+            ],
+            "log": true
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}/laravel_app",
+            "port": 9001
+        }
+    ]
+}
