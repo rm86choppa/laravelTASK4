@@ -24,7 +24,18 @@ class PostController extends Controller
     public function index()
     {
         //全投稿情報取得(投稿に紐づくユーザ情報も取得)
-        $posts = Post::with('user')->get();
+        $posts = Post::with('user', 'users')->get();
+        //$like_count = Post::withCount('');
+        $count1 = Post::withCount('users')->get();
+        $count0 = $posts[0]->users->count();
+        $count1 = $posts[1]->users->count();
+        $count2 = $posts[2]->users->count();
+        $count3 = $posts[3]->users->count();
+
+        $result1 = $posts[0]->users->where('id', 2);
+        $result2 = $posts[0]->users->where('id', 2)->count();
+        //$count3 = $posts[2]->with('post_user')->count();
+        //$post_user = Post::with('user')->where('post_user')->count();
 
         return view('post', compact('posts'));
     }
@@ -36,7 +47,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return redirect('newPost');
+        return view('newPost');
     }
 
     /**
