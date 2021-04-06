@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //いいね機能のルート
-route::get('/likes', 'LikesController');
+route::get('/Likes', 'LikesController');
 
 //Postコントローラへのルート
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);

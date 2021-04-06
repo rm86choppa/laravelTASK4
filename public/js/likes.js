@@ -109,7 +109,7 @@ $(function () {
       var liked_icon = $(this).children('.fas.fa-heart');
       $.ajax({
         type: 'GET',
-        url: '/likes',
+        url: '/Likes',
         //web.phpのURLと同じ形にする
         data: {
           'post_id': post_id,

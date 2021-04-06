@@ -8,17 +8,18 @@ $(function () {
     //全投稿のクリックイベントを監視する
     $('.likes_btn').each(function() {
         $(this).on('click', function() {
+            
             //いいねされた投稿ID、ユーザID取得
-            var post_id = $(this).children('#post_id').val();
-            var user_id = $(this).children('#user_id').val();
+            const post_id = $(this).children('#post_id').val();
+            const user_id = $(this).children('#user_id').val();
 
             //いいねアイコン取得
-            var notLiked_icon = $(this).children('.far.fa-heart');
-            var liked_icon = $(this).children('.fas.fa-heart');
+            const notLiked_icon = $(this).children('.far.fa-heart');
+            const liked_icon = $(this).children('.fas.fa-heart');
 
             $.ajax({
                 type: 'GET',
-                url: '/likes', //web.phpのURLと同じ形にする
+                url: '/Likes', //web.phpのURLと同じ形にする
                 data: {
                     'post_id': post_id, //ここはサーバーに贈りたい情報。
                     'user_id': user_id,
