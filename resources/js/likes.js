@@ -19,7 +19,7 @@ $(function () {
 
             $.ajax({
                 type: 'GET',
-                url: '/Likes', //web.phpのURLと同じ形にする
+                url: '/likes', //web.phpのURLと同じ形にする
                 data: {
                     'post_id': post_id, //ここはサーバーに贈りたい情報。
                     'user_id': user_id,
