@@ -23,7 +23,6 @@
                                     @if( (Auth::user()->name) === ($post->user->name))
                                         <form method="GET" action="{{ url('post/'.$post->id.'/edit') }}">
                                             @csrf
-
                                             <button type="submit" class="btn btn-primary mr-2">
                                                 {{ __('編集') }}
                                             </button>
@@ -34,10 +33,18 @@
                                             <button type="submit" class="btn btn-danger" name="delete">{{ __('削除') }}</button>
                                         </form>
                                     @endif
-                                    <a class="btn btn-link" href="#">
-                                        <i class="far fa-heart">1</i>
-                                        <!-- <i class="fas fa-heart"></i> -->
-                                    </a>
+                                    <div class="btn btn-link likes_btn">
+                                        <input type="hidden" name='post_id' id="post_id" value="{{ $post->id }}">
+                                        <input type="hidden" name='user_id' id="user_id" value="{{ Auth::user()->id }}">
+                                        
+                                        @if($post->users->where('id', Auth::user()->id)->count() >= 1)
+                                            <i class="far fa-heart hide">{{ $post->users->count() }}</i>
+                                            <i class="fas fa-heart">{{ $post->users->count() }}</i>
+                                        @else
+                                            <i class="far fa-heart">{{ $post->users->count() }}</i>
+                                            <i class="fas fa-heart hide">{{ $post->users->count() }}</i>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

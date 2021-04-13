@@ -42,4 +42,9 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany('App\Post');
     }
+
+    //いいね機能で多対多のリレーションを組んで中間テーブルを使用するためpostsと紐づけ
+    public function post_user() {
+        return $this->belongsToMany('App\Post');
+    }
 }

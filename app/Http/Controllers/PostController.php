@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index()
     {
         //全投稿情報取得(投稿に紐づくユーザ情報も取得)
-        $posts = Post::with('user')->get();
+        $posts = Post::with('user', 'users')->get();
 
         return view('post', compact('posts'));
     }
@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return redirect('newPost');
+        return view('newPost');
     }
 
     /**

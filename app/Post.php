@@ -13,4 +13,9 @@ class Post extends Model
     public function user() {
         return $this->belongsto('App\User');
     }
+
+    //いいね機能で多対多のリレーションを組んで中間テーブルを使用するためusersと紐づけ
+    public function users() {
+        return $this->belongsToMany('App\User');
+    }
 }
